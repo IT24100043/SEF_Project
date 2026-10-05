@@ -1,0 +1,47 @@
+name: AI Service CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'ai-service/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'ai-service/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ai-service
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: "pip"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt pytest
+
+    - name: Compile python files
+      run: python -m compileall -q .
+
+    - name: Run tests
+      env:
+        LLM_PROVIDER: "ollama"
+        ENABLE_CLIP: "false"
+        DATABASE_URI: "sqlite:///dummy.db"
+      run: |
+        pytest tests -v

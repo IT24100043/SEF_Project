@@ -1,0 +1,49 @@
+/* Login + registration pages (AuthLayout). */
+.auth-page { min-height: 100vh; display: grid; grid-template-columns: minmax(360px, 0.85fr) minmax(0, 1.15fr); background: var(--bg); }
+.auth-aside { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: var(--space-10); color: #fff; background: radial-gradient(600px 400px at 0% 100%, rgba(236, 72, 153, 0.35), transparent 60%), linear-gradient(150deg, #4c1d95, #6d28d9 55%, #7c3aed); overflow: hidden; }
+.auth-aside-copy h2 { font-size: var(--text-3xl); line-height: 1.2; letter-spacing: -0.02em; font-weight: 800; max-width: 420px; }
+.auth-aside-copy ul { list-style: none; padding: 0; margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-4); }
+.auth-aside-copy li { display: flex; gap: var(--space-3); align-items: center; color: rgba(255, 255, 255, 0.9); }
+.auth-aside-foot { color: rgba(255, 255, 255, 0.7); font-size: var(--text-sm); }
+.auth-main { display: flex; justify-content: center; align-items: flex-start; padding: var(--space-12) var(--space-6); }
+.auth-card { width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: var(--space-5); margin: auto 0; }
+.auth-card.wide { max-width: 620px; }
+.auth-back { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-sm); color: var(--text-2); font-weight: 550; align-self: flex-start; }
+.auth-back:hover { color: var(--text); text-decoration: none; }
+.auth-head h1 { font-size: var(--text-3xl); font-weight: 800; letter-spacing: -0.02em; }
+.auth-head p { color: var(--text-2); margin-top: var(--space-1); }
+.auth-footer { text-align: center; color: var(--text-2); font-size: var(--text-sm); padding-top: var(--space-2); }
+.auth-mobile-brand { display: none !important; }
+.auth-form { display: flex; flex-direction: column; gap: var(--space-4); }
+@media (max-width: 900px) {
+  .auth-page { grid-template-columns: 1fr; }
+  .auth-aside { display: none; }
+  .auth-main { padding: var(--space-6) var(--space-4) var(--space-10); }
+  .auth-card { margin: 0; }
+  .auth-mobile-brand { display: inline-flex !important; }
+}
+
+/* Role choice cards */
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+@media (max-width: 560px) { .role-grid { grid-template-columns: 1fr; } }
+.role-card { display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start; padding: var(--space-6); text-align: left; cursor: pointer; font: inherit; color: inherit; transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition); }
+.role-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.role-card h2 { font-size: var(--text-lg); }
+.role-card p { color: var(--text-2); font-size: var(--text-sm); line-height: 1.55; }
+.role-card ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: var(--text-sm); color: var(--text-2); }
+.role-card li::before { content: '✓  '; color: var(--success); font-weight: 700; }
+.role-card .cta { margin-top: auto; color: var(--primary-text); font-weight: 650; font-size: var(--text-sm); display: inline-flex; align-items: center; gap: 4px; }
+
+/* Password field with show/hide button */
+.password-wrap { position: relative; }
+.password-wrap .input { padding-right: 44px; }
+.password-toggle { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; display: grid; place-items: center; border: 0; background: transparent; color: var(--text-3); border-radius: var(--radius-sm); cursor: pointer; }
+.password-toggle:hover { color: var(--text); background: var(--surface-2); }
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear { display: none; }
+
+/* Profile photo picker */
+.photo-picker { display: flex; align-items: center; gap: var(--space-4); }
+.photo-picker-circle { width: 76px; height: 76px; flex-shrink: 0; border-radius: 50%; border: 2px dashed var(--border-strong); background: var(--surface-2); color: var(--text-3); display: grid; place-items: center; overflow: hidden; cursor: pointer; padding: 0; }
+.photo-picker-circle:hover { border-color: var(--primary); color: var(--primary-text); }
+.photo-picker-circle img { width: 100%; height: 100%; object-fit: cover; }

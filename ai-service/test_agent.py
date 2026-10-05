@@ -1,0 +1,6 @@
+﻿from langgraph.prebuilt import create_react_agent
+from langgraph.checkpoint.memory import MemorySaver
+from ChatBot.agent_01 import tools, llm, system_prompt
+memory = MemorySaver()
+agent = create_react_agent(llm, tools=tools, state_modifier=system_prompt, checkpointer=memory)
+

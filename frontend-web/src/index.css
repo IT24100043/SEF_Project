@@ -1,0 +1,3 @@
+/* Global styles: design tokens (light + dark) and the base component classes. */
+@import './styles/tokens.css';
+@import './styles/base.css';
